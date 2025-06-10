@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project 
+
+   xmlns                ="http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi            ="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation   ="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+   <modelVersion>4.0.0</modelVersion>
+
+   <!-- 
+   
+      This creates a valid mirror of a p2 repo for the eclipse nl plugins
+      
+    -->
+   <name>mytourbook-mirror-p2-for-eclipse-nl</name>
+
+   <artifactId>mirror-p2-for-eclipse-nl</artifactId>              <groupId>net.tourbook</groupId>
+                                                                  <version>25.6.0-SNAPSHOT</version>
+   <packaging>pom</packaging>
+   
+   <properties>
+      <tycho.version>4.0.13</tycho.version>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+   </properties>
+
+   <build>
+      <plugins>
+
+         <plugin>
+
+            <artifactId>tycho-p2-extras-plugin</artifactId>       <groupId>org.eclipse.tycho.extras</groupId>
+                                                                  <version>${tycho.version}</version>
+            <executions>
+               <execution>
+                  <id>copy-to-central-site</id>
+                  
+                  <!-- run: mvn install -->
+                  <phase>install</phase>
+
+                  <goals>
+                     <goal>mirror</goal>
+                  </goals>
+
+                  <configuration>
+                     <source>
+                        <repository>
+                           
+                           
+                           <url>https://download.eclipse.org/technology/babel/update-site/R0.20.0/2022-12/</url>
+<!-- 
+                           <url>/eclipse-nl-repo</url>
+                           
+                           This was used to create a small from a BIG repo
+                              
+                           <url>/eclipse-nl-repo</url>
+                           
+                           
+                           This was used to download the whole repo which took 1h 15minute
+                           <url>https://download.eclipse.org/technology/babel/update-site/R0.20.0/2022-12/</url>
+-->
+                           <layout>p2</layout>   
+                        </repository>
+                     </source>
+                     
+                     <destination>../mytourbook/build/build.eclipse.4.26.nl.repo</destination>
+                                
+<!-- 
+                     <destination>/eclipse-nl-repo-SMALL</destination>
+                     
+                     This was used to create a BIG repo
+                     
+                     <destination>/eclipse-nl-repo</destination>
+-->
+
+                     <ius>
+                     
+                        <!-- 
+
+                           These ius makes the build process much more faster
+
+                         -->
+                     
+                       <iu><id>org.eclipse.core.commands.nl_cs</id></iu>
+                       <iu><id>org.eclipse.core.commands.nl_de</id></iu>
+                       <iu><id>org.eclipse.core.commands.nl_es</id></iu>
+                       <iu><id>org.eclipse.core.commands.nl_fr</id></iu>
+                       <iu><id>org.eclipse.core.commands.nl_it</id></iu>
+                       <iu><id>org.eclipse.core.commands.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.core.contenttype.nl_cs</id></iu>
+                       <iu><id>org.eclipse.core.contenttype.nl_de</id></iu>
+                       <iu><id>org.eclipse.core.contenttype.nl_es</id></iu>
+                       <iu><id>org.eclipse.core.contenttype.nl_fr</id></iu>
+                       <iu><id>org.eclipse.core.contenttype.nl_it</id></iu>
+                       <iu><id>org.eclipse.core.contenttype.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.core.databinding.nl_cs</id></iu>
+                       <iu><id>org.eclipse.core.databinding.nl_de</id></iu>
+                       <iu><id>org.eclipse.core.databinding.nl_es</id></iu>
+                       <iu><id>org.eclipse.core.databinding.nl_fr</id></iu>
+                       <iu><id>org.eclipse.core.databinding.nl_it</id></iu>
+                       <iu><id>org.eclipse.core.databinding.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.core.expressions.nl_cs</id></iu>
+                       <iu><id>org.eclipse.core.expressions.nl_de</id></iu>
+                       <iu><id>org.eclipse.core.expressions.nl_es</id></iu>
+                       <iu><id>org.eclipse.core.expressions.nl_fr</id></iu>
+                       <iu><id>org.eclipse.core.expressions.nl_it</id></iu>
+                       <iu><id>org.eclipse.core.expressions.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.core.jobs.nl_cs</id></iu>
+                       <iu><id>org.eclipse.core.jobs.nl_de</id></iu>
+                       <iu><id>org.eclipse.core.jobs.nl_es</id></iu>
+                       <iu><id>org.eclipse.core.jobs.nl_fr</id></iu>
+                       <iu><id>org.eclipse.core.jobs.nl_it</id></iu>
+                       <iu><id>org.eclipse.core.jobs.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.core.net.nl_cs</id></iu>
+                       <iu><id>org.eclipse.core.net.nl_de</id></iu>
+                       <iu><id>org.eclipse.core.net.nl_es</id></iu>
+                       <iu><id>org.eclipse.core.net.nl_fr</id></iu>
+                       <iu><id>org.eclipse.core.net.nl_it</id></iu>
+                       <iu><id>org.eclipse.core.net.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.core.runtime.nl_cs</id></iu>
+                       <iu><id>org.eclipse.core.runtime.nl_de</id></iu>
+                       <iu><id>org.eclipse.core.runtime.nl_es</id></iu>
+                       <iu><id>org.eclipse.core.runtime.nl_fr</id></iu>
+                       <iu><id>org.eclipse.core.runtime.nl_it</id></iu>
+                       <iu><id>org.eclipse.core.runtime.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.equinox.p2.artifact.repository.nl_cs</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.artifact.repository.nl_de</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.artifact.repository.nl_es</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.artifact.repository.nl_fr</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.artifact.repository.nl_it</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.artifact.repository.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.equinox.p2.core.nl_cs</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.core.nl_de</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.core.nl_es</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.core.nl_fr</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.core.nl_it</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.core.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.equinox.p2.director.nl_cs</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.director.nl_de</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.director.nl_es</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.director.nl_fr</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.director.nl_it</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.director.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.equinox.p2.engine.nl_cs</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.engine.nl_de</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.engine.nl_es</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.engine.nl_fr</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.engine.nl_it</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.engine.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.equinox.p2.garbagecollector.nl_cs</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.garbagecollector.nl_de</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.garbagecollector.nl_es</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.garbagecollector.nl_fr</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.garbagecollector.nl_it</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.garbagecollector.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.equinox.p2.jarprocessor.nl_cs</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.jarprocessor.nl_de</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.jarprocessor.nl_es</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.jarprocessor.nl_fr</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.jarprocessor.nl_it</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.jarprocessor.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.equinox.p2.metadata.nl_cs</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.metadata.nl_de</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.metadata.nl_es</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.metadata.nl_fr</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.metadata.nl_it</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.metadata.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.equinox.p2.metadata.repository.nl_cs</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.metadata.repository.nl_de</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.metadata.repository.nl_es</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.metadata.repository.nl_fr</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.metadata.repository.nl_it</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.metadata.repository.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.equinox.p2.operations.nl_cs</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.operations.nl_de</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.operations.nl_es</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.operations.nl_fr</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.operations.nl_it</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.operations.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.equinox.p2.repository.nl_cs</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.repository.nl_de</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.repository.nl_es</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.repository.nl_fr</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.repository.nl_it</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.repository.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.equinox.p2.touchpoint.eclipse.nl_cs</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.touchpoint.eclipse.nl_de</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.touchpoint.eclipse.nl_es</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.touchpoint.eclipse.nl_fr</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.touchpoint.eclipse.nl_it</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.touchpoint.eclipse.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.equinox.p2.transport.ecf.nl_cs</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.transport.ecf.nl_de</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.transport.ecf.nl_es</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.transport.ecf.nl_fr</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.transport.ecf.nl_it</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.transport.ecf.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.equinox.p2.ui.nl_cs</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.ui.nl_de</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.ui.nl_es</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.ui.nl_fr</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.ui.nl_it</id></iu>
+                       <iu><id>org.eclipse.equinox.p2.ui.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.help.nl_cs</id></iu>
+                       <iu><id>org.eclipse.help.nl_de</id></iu>
+                       <iu><id>org.eclipse.help.nl_es</id></iu>
+                       <iu><id>org.eclipse.help.nl_fr</id></iu>
+                       <iu><id>org.eclipse.help.nl_it</id></iu>
+                       <iu><id>org.eclipse.help.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.jface.nl_cs</id></iu>
+                       <iu><id>org.eclipse.jface.nl_de</id></iu>
+                       <iu><id>org.eclipse.jface.nl_es</id></iu>
+                       <iu><id>org.eclipse.jface.nl_fr</id></iu>
+                       <iu><id>org.eclipse.jface.nl_it</id></iu>
+                       <iu><id>org.eclipse.jface.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.jface.databinding.nl_cs</id></iu>
+                       <iu><id>org.eclipse.jface.databinding.nl_de</id></iu>
+                       <iu><id>org.eclipse.jface.databinding.nl_es</id></iu>
+                       <iu><id>org.eclipse.jface.databinding.nl_fr</id></iu>
+                       <iu><id>org.eclipse.jface.databinding.nl_it</id></iu>
+                       <iu><id>org.eclipse.jface.databinding.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.swt.nl_cs</id></iu>
+                       <iu><id>org.eclipse.swt.nl_de</id></iu>
+                       <iu><id>org.eclipse.swt.nl_es</id></iu>
+                       <iu><id>org.eclipse.swt.nl_fr</id></iu>
+                       <iu><id>org.eclipse.swt.nl_it</id></iu>
+                       <iu><id>org.eclipse.swt.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.ui.nl_cs</id></iu>
+                       <iu><id>org.eclipse.ui.nl_de</id></iu>
+                       <iu><id>org.eclipse.ui.nl_es</id></iu>
+                       <iu><id>org.eclipse.ui.nl_fr</id></iu>
+                       <iu><id>org.eclipse.ui.nl_it</id></iu>
+                       <iu><id>org.eclipse.ui.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.ui.forms.nl_cs</id></iu>
+                       <iu><id>org.eclipse.ui.forms.nl_de</id></iu>
+                       <iu><id>org.eclipse.ui.forms.nl_es</id></iu>
+                       <iu><id>org.eclipse.ui.forms.nl_fr</id></iu>
+                       <iu><id>org.eclipse.ui.forms.nl_it</id></iu>
+                       <iu><id>org.eclipse.ui.forms.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.ui.views.log.nl_cs</id></iu>
+                       <iu><id>org.eclipse.ui.views.log.nl_de</id></iu>
+                       <iu><id>org.eclipse.ui.views.log.nl_es</id></iu>
+                       <iu><id>org.eclipse.ui.views.log.nl_fr</id></iu>
+                       <iu><id>org.eclipse.ui.views.log.nl_it</id></iu>
+                       <iu><id>org.eclipse.ui.views.log.nl_nl</id></iu>
+
+                       <iu><id>org.eclipse.ui.workbench.nl_cs</id></iu>
+                       <iu><id>org.eclipse.ui.workbench.nl_de</id></iu>
+                       <iu><id>org.eclipse.ui.workbench.nl_es</id></iu>
+                       <iu><id>org.eclipse.ui.workbench.nl_fr</id></iu>
+                       <iu><id>org.eclipse.ui.workbench.nl_it</id></iu>
+                       <iu><id>org.eclipse.ui.workbench.nl_nl</id></iu>
+                     </ius>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
+   </build>
+
+</project>
+
